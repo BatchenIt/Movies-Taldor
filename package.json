@@ -1,0 +1,25 @@
+{
+  "name": "movies",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BatchenIt/Movies-Taldor.git"
+  },
+  "author": "Batchen Itbarach",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BatchenIt/Movies-Taldor/issues"
+  },
+  "homepage": "https://github.com/BatchenIt/Movies-Taldor#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.4"
+  }
+}
