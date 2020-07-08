@@ -32,7 +32,6 @@ export class SecureComponent implements OnInit {
         if (indexOfDeletedMovie != -1) {
           this.movies.splice(indexOfDeletedMovie, 1);
           this._deleteCategortToShow(e);
-          console.log('movies', this.movies);
         }
       },
       (err) => {
