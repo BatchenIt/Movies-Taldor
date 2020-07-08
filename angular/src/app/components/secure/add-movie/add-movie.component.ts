@@ -25,7 +25,6 @@ export class AddMovieComponent implements OnInit {
   addMovie() {
     this.errMSGs = this._initErrMsgsObj();
     if (this._isFormValid(this.newMovie)) {
-      console.log('this.newMovie', this.newMovie);
       this.addMovieEvent.emit(this.newMovie);
     }
   }
