@@ -1,0 +1,4 @@
+<ng-container *ngIf="movies && categories">
+    <app-movies [movies]="movies" [categories]="categories" [categoriesToShow]="categoriesToShow" [userName]="userName"
+        (deleteMovieEvent)="deleteMovie($event)" (addMovieEvent)="addMovie($event)"></app-movies>
+</ng-container>

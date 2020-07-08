@@ -1,0 +1,54 @@
+.movie {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+
+.movie .right-part {
+  width: 30%;
+}
+
+.movie .right-part img {
+  position: relative;
+  max-width: 100%;
+  height: auto;
+}
+
+.movie .left-part {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  align-content: space-around;
+}
+
+.movie .left-part .center-text {
+  text-align: center;
+}
+
+.movie .delete {
+  width: 10%;
+  margin-right: auto;
+}
+
+.movie .delete .fa-times-circle-o {
+  cursor: pointer;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+

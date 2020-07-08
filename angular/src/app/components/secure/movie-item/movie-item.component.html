@@ -1,0 +1,17 @@
+<div class="movie">
+    <div class="right-part">
+        <a [href]="movie.imdbUrl" target="_blank">
+            <img [src]="movie.imgUrl"> 
+            <!-- [alt]="movie.name" -->
+        </a>
+    </div>
+    <div class="left-part">
+        <a class="center-text" [href]="movie.imdbUrl" target="_blank">
+            <span> {{ movie.name }} </span>
+        </a>
+        <span class="center-text" > {{ movie.categoryName }} </span>
+    </div>
+    <div class="delete">
+        <i class="fa fa-times-circle-o" aria-hidden="true" (click)="deleteMovie()"></i>
+    </div>
+</div>

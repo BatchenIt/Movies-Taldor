@@ -1,0 +1,19 @@
+<ng-container *ngIf="!addMoviePage; else show_add_movie_page">
+    <div class="container">
+        <ul class="right-part">
+            <li> ברוך הבא <strong>{{ userName }}</strong> </li>
+            <li (click)="openAddMoviePage()"> הוספת סרט </li>
+            <li *ngFor="let category of categoriesToShow; let i = index"> {{ category.name }} </li>
+        </ul>
+        <div class="left-part">
+            <div *ngFor="let movie of movies" class="movie-container">
+                <app-movie-item [movie]="movie" (deleteMovieEvent)="deleteMovie($event)"></app-movie-item>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #show_add_movie_page>
+    <app-add-movie [categories]="categories" (addMovieEvent)="addMovie($event)" (cancelEvent)="addMovieCanceled()">
+    </app-add-movie>
+</ng-template>

@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="form-container">
+        <form>
+            <div class="user-name-contaniner">
+                <label for="userName"> שם </label>
+                <input id="userName" type="text" name="userName" [(ngModel)]="user.userName">
+            </div>
+            <div class="password-container">
+                <label for="password"> סיסמא </label>
+                <input id="password" type="password" name="password" [(ngModel)]="user.password">
+            </div>
+            <div class="btn-conteiner">
+                <button (click)="submitForm()"> כניסה </button>
+            </div>
+            <p *ngIf="!isUserValid" class="err-msg">אינך מורשה</p>
+        </form>
+    </div>
+</div>

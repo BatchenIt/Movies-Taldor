@@ -1,0 +1,52 @@
+{
+  "movies": [
+    {
+      "id": 1,
+      "name": "Joker",
+      "categoryId": 2,
+      "imdbUrl": "https://www.imdb.com/title/tt7286456/?ref_=hm_fanfav_tt_4_pd_fp1",
+      "imgUrl": "https://www.roshpinacine.com/wp-content/uploads/2019/11/joker.jpg"
+    },
+    {
+      "id": 2,
+      "name": "The Matrix",
+      "categoryId": 3,
+      "imdbUrl": "https://www.imdb.com/title/tt0133093/?ref_=fn_al_tt_1",
+      "imgUrl": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Fight Club",
+      "categoryId": 2,
+      "imdbUrl": "https://www.imdb.com/title/tt0137523/?ref_=hm_stp_pvs_piv_tt_6",
+      "imgUrl": "https://m.media-amazon.com/images/M/MV5BMmEzNTkxYjQtZTc0MC00YTVjLTg5ZTEtZWMwOWVlYzY0NWIwXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_UX182_CR0,0,182,268_AL_.jpg"
+    },
+    {
+      "id": 4,
+      "name": "No Country for Old Men",
+      "categoryId": 2,
+      "imdbUrl": "https://www.imdb.com/title/tt0477348/?ref_=hm_stp_pvs_piv_tt_5",
+      "imgUrl": "https://m.media-amazon.com/images/M/MV5BMjA5Njk3MjM4OV5BMl5BanBnXkFtZTcwMTc5MTE1MQ@@._V1_UY268_CR0,0,182,268_AL_.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Deadpool",
+      "categoryId": 2,
+      "imdbUrl": "https://www.imdb.com/title/tt1431045/?ref_=fn_al_tt_1",
+      "imgUrl": "https://m.media-amazon.com/images/M/MV5BYzE5MjY1ZDgtMTkyNC00MTMyLThhMjAtZGI5OTE1NzFlZGJjXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_UX182_CR0,0,182,268_AL_.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Back to the Future",
+      "categoryId": 2,
+      "imdbUrl": "https://www.imdb.com/title/tt0088763/?ref_=hm_stp_pvs_piv_tt_1",
+      "imgUrl": "https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_UX182_CR0,0,182,268_AL_.jpg"
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "דרמה" },
+    { "id": 2, "name": "קומדיה" },
+    { "id": 3, "name": "אקשן" },
+    { "id": 4, "name": "אחר" }
+  ]
+}

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="form-container">
+        <form>
+            <h3> הוספת סרט </h3>
+            <div class="field-container">
+                <label for="name">שם</label>
+                <input id="name" type="text" placeholder="באנגלית, עד 30 תווים בלבד" maxlength="30" name="name"
+                    [(ngModel)]="newMovie.name">
+                <span class="err-msg"> {{ errMSGs.name }} </span>
+            </div>
+            <div class="field-container">
+                <label for="category">קטגוריה</label>
+                <select id="category" name="category" [(ngModel)]="newMovie.categoryId" (change)="select($event)">
+                    <option *ngFor="let category of categories" [value]="category.id"> {{ category.name }} </option>
+                </select>
+                <span class="err-msg"> {{ errMSGs.categoryName }} </span>
+            </div>
+            <div class="field-container">
+                <label for="imdbUrl"> לינק לimdb </label>
+                <input type="text" id="imdbUrl" name="imdbUrl" [(ngModel)]="newMovie.imdbUrl">
+                <span class="err-msg"> {{ errMSGs.imdbUrl }} </span>
+            </div>
+            <div class="field-container">
+                <label for="imgUrl"> לינק לפוסטר </label>
+                <input type="text" id="imgUrl" name="imgUrl" [(ngModel)]="newMovie.imgUrl">
+                <span class="err-msg"> {{ errMSGs.imgUrl }} </span>
+            </div>
+            <div>
+                <button (click)="addMovie()"> אישור </button>
+                <button (click)="cancel()"> ביטול </button>
+            </div>
+        </form>
+    </div>
+</div>
