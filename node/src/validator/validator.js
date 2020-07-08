@@ -35,19 +35,22 @@ export const validateMovie = (movies, movie) => {
 
         switch (key) {
             case 'id':
-                if (!validator.isEmpty(value.toString())) {
+                if (!validator.isEmpty(value.toString()) && value !== 0) {
                     errors[key].push(enumErrors['id - not empty'])
                 }
                 break;
 
             case 'imgUrl':
+                if (!validator.isURL(value) && !(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i.test(value))) {
+                    errors[key].push(enumErrors['wrong url'])
+                }
+                break;
             case 'imdbUrl':
                 if (!validator.isURL(value)) {
                     errors[key].push(enumErrors['wrong url'])
                 }
-
+                break;
             case 'name':
-                console.log('case name, actually', key);
                 if (!validator.isAlpha(value)) {
                     errors[key].push(enumErrors['name - not English'])
                 }
@@ -57,7 +60,6 @@ export const validateMovie = (movies, movie) => {
                 break;
 
             default:
-                console.log('case default, actually', key);
                 if (validator.isEmpty(value)) {
                     errors[key].push(enumErrors['empty'])
                 }
