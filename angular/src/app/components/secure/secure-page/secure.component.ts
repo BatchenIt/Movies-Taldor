@@ -83,7 +83,7 @@ export class SecureComponent implements OnInit {
 
   private _deleteCategortToShow(movieToDelete: Movie) {
     const categoryToDelete = this.categoriesToShow.findIndex(category => category.id === movieToDelete.categoryId);
-    if (categoryToDelete != 1) {
+    if (categoryToDelete != -1) {
       const checkCategoryInOtherMovies = this.movies.find(movie => movie.categoryId == movieToDelete.categoryId);
       if (!checkCategoryInOtherMovies)
         this.categoriesToShow.splice(categoryToDelete, 1);

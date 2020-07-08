@@ -1,5 +1,5 @@
 import { Injectable, } from '@angular/core';
-import { Router, CanActivate } from '@angular/router';
+import { Router, CanActivate, ActivatedRoute } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -8,11 +8,14 @@ import { AuthService } from './auth.service';
 
 export class UserDetailsGuard implements CanActivate {
 
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService,
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   canActivate(): boolean {
-    if (!this.auth.canActivate)
-      this.router.navigateByUrl['/login'];
+    if (!this.auth.canActivate) {
+      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('returnUrl') || '/');
+    }
     return this.auth.canActivate;
   }
 }

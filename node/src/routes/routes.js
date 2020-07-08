@@ -27,5 +27,3 @@ router.delete('/movie/:id', (req, res) => {
 
 
 export default router;
-
-// TO DO - Handel errors
