@@ -21,10 +21,9 @@ export const getCategories = () => {
 
 export const addMovie = req => {
     const movieToAdd = req.body
-
     const errors = validateMovie(movies, movieToAdd)
-    const isMovieNotValid = isErrorsObjFull(errors)
-    if (!isMovieNotValid) {
+    
+    if (!Object.values(errors).some(val => val != 0)) {
         movieToAdd.id = ((+movies[movies.length - 1].id) + 1).toString()
         movies.push({ ...movieToAdd })
     }
@@ -49,10 +48,4 @@ export const deleteMovie = req => {
     return deletedMovie
 }
 
-const isErrorsObjFull = errors => {
-    for (let value of Object.values(errors)) {
-        if (value?.length > 0) return true
-    }
-    return false
-}
 

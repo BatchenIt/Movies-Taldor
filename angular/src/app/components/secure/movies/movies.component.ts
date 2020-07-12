@@ -34,11 +34,9 @@ export class MoviesComponent implements OnInit {
 
   addMovie(e: Movie) {
     this.addMovieEvent.emit(e);
-    this.addMoviePage = false
-    // this.api.addMovieServerRes.subscribe((res) => {
-    //   console.log('res', res);
-     // To Do - handle errors
-    // });
+    this.api.addMovieServerRes.subscribe((res) => {
+      if (res.movieAdded) this.addMoviePage = false;
+    });
   }
 
   addMovieCanceled() {

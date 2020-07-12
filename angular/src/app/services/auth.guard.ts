@@ -14,7 +14,7 @@ export class UserDetailsGuard implements CanActivate {
 
   canActivate(): boolean {
     if (!this.auth.canActivate) {
-      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('returnUrl') || '/');
+      this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('/'));
     }
     return this.auth.canActivate;
   }
