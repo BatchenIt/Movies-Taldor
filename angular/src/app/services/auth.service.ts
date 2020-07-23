@@ -5,8 +5,22 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
 
-  userName: string;
-  canActivate: boolean = false;;
-  
+  private _isLoggedIn: boolean;
+  private _userName: string;
+
   constructor() { }
+
+  setLoggedInUser(isLoggedIn: boolean, userName: string) {
+    this._isLoggedIn = isLoggedIn;
+    this._userName = userName;
+  }
+
+  isLoggedIn() {
+    return this._isLoggedIn;
+  }
+
+  getUserName() {
+    return this._userName;
+  }
+
 }

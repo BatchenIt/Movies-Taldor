@@ -13,10 +13,11 @@ export class UserDetailsGuard implements CanActivate {
     private route: ActivatedRoute) { }
 
   canActivate(): boolean {
-    if (!this.auth.canActivate) {
+    const isLoggedIn: boolean = this.auth.isLoggedIn();
+    if (!isLoggedIn) {
       this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('/'));
     }
-    return this.auth.canActivate;
+    return isLoggedIn;
   }
 }
 
