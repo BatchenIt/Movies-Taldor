@@ -1,17 +1,17 @@
 <div class="movie">
-    <div class="right-part">
+    <div class="movie-header">
         <a [href]="movie.imdbUrl" target="_blank">
-            <img [src]="movie.imgUrl"> 
-            <!-- [alt]="movie.name" -->
+            <img [src]="movie.imgUrl" [alt]="movie.name">
         </a>
     </div>
-    <div class="left-part">
+    <div class="movie-body">
         <a class="center-text" [href]="movie.imdbUrl" target="_blank">
             <span> {{ movie.name }} </span>
         </a>
-        <span class="center-text" > {{ movie.categoryName }} </span>
+        <span class="center-text"> {{ movie.categoryName }} </span>
     </div>
-    <div class="delete">
-        <i class="fa fa-times-circle-o" aria-hidden="true" (click)="deleteMovie()"></i>
+    <div class="movie-footer">
+        <i class="fa fa-trash" aria-hidden="true" (click)="deleteMovie()"></i>
+        <!-- <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editMovie()"></i> -->
     </div>
 </div>

@@ -8,7 +8,7 @@ import { SecureComponent } from './components/secure/secure-page/secure.componen
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'secure', component: SecureComponent, canActivate: [UserDetailsGuard] }, //
+  { path: 'secure', component: SecureComponent, canActivate: [UserDetailsGuard] },
   { path: '**', redirectTo: 'login' }
 ];
 

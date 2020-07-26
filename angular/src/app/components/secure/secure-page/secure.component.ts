@@ -22,8 +22,6 @@ export class SecureComponent implements OnInit {
 
   ngOnInit() {
     this.userName = this.auth.getUserName();
-    console.log('this.userName', this.userName);
-
     this._getMoviesAndCategories();
   }
 

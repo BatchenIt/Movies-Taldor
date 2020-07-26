@@ -20,4 +20,7 @@ export class MovieItemComponent implements OnInit {
     this.deleteMovieEvent.emit(this.movie)
   }
 
+  // editMovie() {
+  // }
+
 }
