@@ -61,11 +61,10 @@ export class AddMovieComponent implements OnInit {
 
   addMovie() {
     this.errMSGs = this._initErrMsgsObj();
-    // if (this._isFormValid(this.newMovie)) {
+    if (this._isFormValid(this.newMovie)) {
     this.store.dispatch(AddMovie(this.newMovie));
-    // this.api.movieAdded.next(true);
     this.goToMoviesPage.emit(this.newMovie);
-    // }
+    }
   }
 
   cancel() {
