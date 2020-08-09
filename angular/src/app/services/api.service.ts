@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Movie } from '../interfaces/movie';
@@ -10,7 +10,6 @@ import { Category } from '../interfaces/category';
 export class ApiService {
 
   base_server_url: string = environment.server_base_url;
-  addMovieServerRes: EventEmitter<{}> = new EventEmitter();
 
   constructor(private httpClient: HttpClient) { }
 

@@ -1,37 +1,31 @@
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../interfaces/movie';
 import { Category } from '../../../interfaces/category';
 import { ApiService } from '../../../services/api.service';
 import { AddMovieErrors } from '../../../interfaces/enum';
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/store/movies.reducer';
+import { AddMovie } from '../../../store/movies.actions';
 
 @Component({
   selector: 'app-add-movie',
   templateUrl: './add-movie.component.html',
   styleUrls: ['./add-movie.component.css']
 })
-export class AddMovieComponent implements OnInit, OnChanges {
+export class AddMovieComponent implements OnInit {
 
   errMSGs;
   errMSGfromServer = {};
   newMovie: Movie;
   @Input() categories: Category[];
-  @Output() cancelEvent: EventEmitter<void> = new EventEmitter();
-  @Output() addMovieEvent: EventEmitter<Movie> = new EventEmitter<Movie>();
+  @Output() goToMoviesPage: EventEmitter<Movie> = new EventEmitter();
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,
+    private store: Store<State>) { }
 
   ngOnInit() {
     this.newMovie = this._initMovie();
     this.errMSGs = this._initErrMsgsObj();
-  }
-
-  ngOnChanges() {
-    this.api.addMovieServerRes.subscribe((res) => {
-      if (res.error) {
-        delete res.error.movieAdded;
-        this.buildErrObjFromServerRes(res.error);
-      }
-    });
   }
 
   buildErrObjFromServerRes(errors) {
@@ -67,13 +61,15 @@ export class AddMovieComponent implements OnInit, OnChanges {
 
   addMovie() {
     this.errMSGs = this._initErrMsgsObj();
-    if (this._isFormValid(this.newMovie)) {
-      this.addMovieEvent.emit(this.newMovie);
-    }
+    // if (this._isFormValid(this.newMovie)) {
+    this.store.dispatch(AddMovie(this.newMovie));
+    // this.api.movieAdded.next(true);
+    this.goToMoviesPage.emit(this.newMovie);
+    // }
   }
 
   cancel() {
-    this.cancelEvent.emit();
+    this.goToMoviesPage.emit();
   }
 
   select(e) {

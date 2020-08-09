@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import { AuthService } from '../../../services/auth.service';
 import { Movie } from '../../../interfaces/movie';
 import { Category } from '../../../interfaces/category';
-import { ApiService } from 'src/app/services/api.service';
+import { State } from '../../../store/movies.reducer';
+
 
 @Component({
   selector: 'app-movies',
@@ -10,36 +13,43 @@ import { ApiService } from 'src/app/services/api.service';
 })
 export class MoviesComponent implements OnInit {
 
-  @Input() userName: string;
-  @Input() movies: Movie[];
-  @Input() categories: Category[];
-  @Input() categoriesToShow: Category[];
-  @Output() deleteMovieEvent: EventEmitter<Movie> = new EventEmitter<Movie>();
-  @Output() addMovieEvent: EventEmitter<Movie> = new EventEmitter<Movie>();
-
+  state: State;
+  categories: Category[];
+  categoriesToShow: Category[];
   addMoviePage = false;
+  userName: string;
 
-  constructor(private api: ApiService) { }
-
-  ngOnInit() {
+  constructor(private auth: AuthService,
+    private store: Store<State>) {
+    this._getState();
   }
 
-  deleteMovie(e: Movie) {
-    this.deleteMovieEvent.emit(e)
+  ngOnInit() {
+    this.userName = this.auth.getUserName();
+  }
+
+  private _getState() {
+    this.state = { movies: [], categories: [] };
+    this.store.pipe(select('movies')).subscribe(res => {
+      this.state.movies = res['movies'];
+      this.state.categories = res['categories'];
+      this.categoriesToShow = [...this._buildCategoriesArrayToShow(this.state)];
+    });
+  }
+
+  private _buildCategoriesArrayToShow(state: State) {
+    return state.categories.filter((category: Category) => {
+      return state.movies.some((movie: Movie) => {
+        return movie.categoryId == category.id;
+      });
+    });
   }
 
   openAddMoviePage() {
     this.addMoviePage = true;
   }
 
-  addMovie(e: Movie) {
-    this.addMovieEvent.emit(e);
-    this.api.addMovieServerRes.subscribe((res) => {
-      if (res.movieAdded) this.addMoviePage = false;
-    });
-  }
-
-  addMovieCanceled() {
+  goToMoviesPage() {
     this.addMoviePage = false;
   }
 }

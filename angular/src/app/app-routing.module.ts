@@ -3,12 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserDetailsGuard } from './services/auth.guard';
 import { LoginComponent } from './components/login/login.component';
-import { SecureComponent } from './components/secure/secure-page/secure.component';
+import { MoviesComponent } from './components/secure/movies/movies.component';
 
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'secure', component: SecureComponent, canActivate: [UserDetailsGuard] },
+  { path: 'secure', component: MoviesComponent, canActivate: [UserDetailsGuard] },
   { path: '**', redirectTo: 'login' }
 ];
 

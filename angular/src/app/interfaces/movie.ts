@@ -2,7 +2,7 @@ export interface Movie {
     id: number;
     name: string;
     categoryId: number;
-    categoryName: string;
+    categoryName?: string;
     imgUrl: string;
     imdbUrl: string;
 } 
