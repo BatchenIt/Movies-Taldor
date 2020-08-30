@@ -1,54 +1,85 @@
-import { createReducer, on } from '@ngrx/store';
-import { AddMovie, DeleteMovie } from './movies.actions';
+import { MoviesActions, MoviesActionTypes } from './movies.actions';
 import { Movie } from '../interfaces/movie';
 import { Category } from '../interfaces/category';
+import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
-export interface State {
-    movies: Movie[];
-    categories: Category[];
+export interface MoviesState {
+    list: Movie[];
+    // categories: Category[];
+    loading: boolean;
+    error: Error;
 }
 
 export const initialState =
 {
-    movies:
-        [
-            {
-                id: 1,
-                name: 'Joker',
-                categoryId: 2,
-                imdbUrl: 'https://www.imdb.com/title/tt7286456/?ref_=hm_fanfav_tt_4_pd_fp1',
-                imgUrl: 'https://www.roshpinacine.com/wp-content/uploads/2019/11/joker.jpg'
-            }]
-    ,
-    categories: [
-        { id: 1, name: "דרמה" },
-        { id: 2, name: "קומדיה" },
-        { id: 3, name: "אקשן" },
-        { id: 4, name: "אחר" }]
+    list: [],
+    loading: false,
+    error: undefined
+    // categories: [
+    //     { id: 1, name: "דרמה" },
+    //     { id: 2, name: "קומדיה" },
+    //     { id: 3, name: "אקשן" },
+    //     { id: 4, name: "אחר" }]
 };
-// const _moviesReducer = moviesReducer(initialState,
-//     on(addMovie, state => [...initialState, { ...state }])
-// );
 
-export function moviesReducer(state = initialState, action) {
-    console.log('state', state);
-    console.log('action', action);
+export function moviesReducer(
+    state: MoviesState = initialState,
+    action: MoviesActions): MoviesState {
 
     switch (action.type) {
-        case AddMovie.type:
+        case MoviesActionTypes.LOAD_MOVIES:
             return {
-                movies: [...state.movies, { ...action }],
-                categories: state.categories
-            };
-        case DeleteMovie.type:
-            const movieIndexToDelete = state.movies.findIndex(x => x.id == action.id);
-            let movies = [...state.movies];
-            if (movieIndexToDelete != -1)
-                movies.splice(movieIndexToDelete, 1);
+                ...state,
+                loading: true
+            }
+        case MoviesActionTypes.LOAD_MOVIE_SUCCESS:
             return {
-                movies,
-                categories: state.categories
+                ...state,
+                list: action.payload,
+                loading: false
+            }
+        case MoviesActionTypes.LOAD_MOVIE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+        case MoviesActionTypes.ADD_MOVIE:
+            return {
+                ...state,
+                loading: true
+            }
+        case MoviesActionTypes.ADD_MOVIE_SUCCESS:
+            return {
+                ...state,
+                list: [...state.list, { ...action.payload }],
+                loading: false
+                // categories: state.categories
             };
+        case MoviesActionTypes.ADD_MOVIE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+        case MoviesActionTypes.DELETE_MOVIE:
+            return {
+                ...state,
+                loading: true
+            }
+        case MoviesActionTypes.DELETE_MOVIE_SUCCESS:
+            return {
+                ...state,
+                list: state.list.filter(x => x.id !== action.payload),
+                loading: false
+                // categories: state.categories
+            };
+        case MoviesActionTypes.DELETE_MOVIE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
         default:
             return { ...state };
     }

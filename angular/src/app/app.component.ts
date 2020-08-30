@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { MoviesState } from './store/movies.reducer';
+import { LoadMovieAction } from './store/movies.actions';
 
 @Component({
   selector: 'app-root',
@@ -6,4 +9,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  constructor() {
+  }
 }

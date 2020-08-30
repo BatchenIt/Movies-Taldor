@@ -1,9 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { AuthService } from '../../../services/auth.service';
 import { Movie } from '../../../interfaces/movie';
 import { Category } from '../../../interfaces/category';
-import { State } from '../../../store/movies.reducer';
+import { MoviesState } from '../../../store/movies.reducer';
+import { Observable } from 'rxjs';
+import { LoadMovieAction } from '../../../store/movies.actions';
+import { AppState } from '../../../store/index';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { AddMovieComponent } from '../add-movie/add-movie.component';
 
 
 @Component({
@@ -13,43 +18,60 @@ import { State } from '../../../store/movies.reducer';
 })
 export class MoviesComponent implements OnInit {
 
-  state: State;
-  categories: Category[];
-  categoriesToShow: Category[];
-  addMoviePage = false;
+  // categories: Category[];
+  // categoriesToShow: Category[];
   userName: string;
 
-  constructor(private auth: AuthService,
-    private store: Store<State>) {
-    this._getState();
+  dialogRef: MatDialogRef<AddMovieComponent>
+
+  movies$: Observable<Movie[]>;
+  loading$: Observable<boolean>;
+  error$: Observable<Error>;
+
+
+
+  constructor(
+    private auth: AuthService,
+    private store: Store<AppState>,
+    public dialog: MatDialog
+  ) {
   }
 
   ngOnInit() {
     this.userName = this.auth.getUserName();
+    this.store.dispatch(new LoadMovieAction());
+    this.movies$ = this.store.pipe(select(store => store.moviesState.list));
+    this.loading$ = this.store.pipe(select(store => store.moviesState.loading));
+    this.error$ = this.store.pipe(select(store => store.moviesState.error));
   }
 
-  private _getState() {
-    this.state = { movies: [], categories: [] };
-    this.store.pipe(select('movies')).subscribe(res => {
-      this.state.movies = res['movies'];
-      this.state.categories = res['categories'];
-      this.categoriesToShow = [...this._buildCategoriesArrayToShow(this.state)];
+
+  // private _getState() {
+  //   this.state = { movies: [], categories: [] };
+  //   this.store.pipe(select('movies')).subscribe(res => {
+  //     this.state.movies = res['movies'];
+  //     this.state.categories = res['categories'];
+  //     this.categoriesToShow = [...this._buildCategoriesArrayToShow(this.state)];
+  //   });
+  // }
+
+  // private _buildCategoriesArrayToShow(state: MoviesState) {
+  //   return state.categories.filter((category: Category) => {
+  //     return state.movies.some((movie: Movie) => {
+  //       return movie.categoryId == category.id;
+  //     });
+  //   });
+  // }
+
+  openDialog() {
+    this.dialogRef = this.dialog.open(AddMovieComponent, {
+      data: {
+        // categories: this.categories$
+      },
     });
-  }
-
-  private _buildCategoriesArrayToShow(state: State) {
-    return state.categories.filter((category: Category) => {
-      return state.movies.some((movie: Movie) => {
-        return movie.categoryId == category.id;
-      });
-    });
-  }
-
-  openAddMoviePage() {
-    this.addMoviePage = true;
   }
 
   goToMoviesPage() {
-    this.addMoviePage = false;
+    this.dialogRef.close('Pizza!');
   }
 }

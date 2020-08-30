@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -54,4 +54,9 @@
   .container .left-part .movie-container {
     width: 100%;
   }
+} */
+
+.grid-list {
+  margin-top: 5%;
+  z-index: 1999;
 }

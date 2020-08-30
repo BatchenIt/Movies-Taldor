@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from '../../../interfaces/movie';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/store/movies.reducer';
-import { DeleteMovie } from '../../../store/movies.actions';
+import { MoviesState } from 'src/app/store/movies.reducer';
+import { DeleteMovieAction } from '../../../store/movies.actions';
 
 @Component({
   selector: 'app-movie-item',
@@ -13,13 +13,15 @@ export class MovieItemComponent implements OnInit {
 
   @Input() movie: Movie;
 
-  constructor(private store: Store<State>) { }
+  constructor(
+    private store: Store<MoviesState>
+  ) { }
 
   ngOnInit() {
   }
 
   deleteMovie() {
-    this.store.dispatch(DeleteMovie({ id: this.movie.id }));
+    this.store.dispatch(new DeleteMovieAction(this.movie.id));
   }
 
   // editMovie() {

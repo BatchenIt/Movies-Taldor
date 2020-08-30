@@ -8,7 +8,7 @@ import { MoviesComponent } from './components/secure/movies/movies.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
-  { path: 'secure', component: MoviesComponent, canActivate: [UserDetailsGuard] },
+  { path: 'movies', component: MoviesComponent }, //, canActivate: [UserDetailsGuard]
   { path: '**', redirectTo: 'login' }
 ];
 

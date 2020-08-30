@@ -1,19 +1,7 @@
-<ng-container *ngIf="!addMoviePage; else show_add_movie_page">
-    <div class="container">
-        <ul class="right-part">
-            <li> ברוך הבא <strong>{{ userName }}</strong> </li>
-            <li (click)="openAddMoviePage()"> הוספת סרט </li>
-            <li *ngFor="let category of categoriesToShow; let i = index"> {{ category.name }} </li>
-        </ul>
-        <div *ngIf="state" class="left-part">
-            <div *ngFor="let movie of state.movies" class="movie-container">
-                <app-movie-item [movie]="movie" (deleteMovieEvent)="deleteMovie($event)"></app-movie-item>
-            </div>
-        </div>
-    </div>
+<ng-container>
+    <mat-grid-list cols="5" class="grid-list">
+        <mat-grid-tile *ngFor="let movie of movies$ | async">
+            <app-movie-item [movie]="movie" (deleteMovieEvent)="deleteMovie($event)"></app-movie-item>
+        </mat-grid-tile>
+    </mat-grid-list>
 </ng-container>
-
-<ng-template #show_add_movie_page>
-    <app-add-movie [categories]="state.categories" (addMovieEvent)="addMovie($event)" (goToMoviesPage)="goToMoviesPage()">
-    </app-add-movie>
-</ng-template>

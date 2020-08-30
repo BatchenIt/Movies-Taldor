@@ -1,11 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
 import { Movie } from '../../../interfaces/movie';
 import { Category } from '../../../interfaces/category';
 import { ApiService } from '../../../services/api.service';
 import { AddMovieErrors } from '../../../interfaces/enum';
 import { Store } from '@ngrx/store';
-import { State } from 'src/app/store/movies.reducer';
-import { AddMovie } from '../../../store/movies.actions';
+import { MoviesState } from 'src/app/store/movies.reducer';
+import { AddMovieAction } from '../../../store/movies.actions';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-movie',
@@ -20,8 +21,11 @@ export class AddMovieComponent implements OnInit {
   @Input() categories: Category[];
   @Output() goToMoviesPage: EventEmitter<Movie> = new EventEmitter();
 
-  constructor(private api: ApiService,
-    private store: Store<State>) { }
+  constructor(
+    private api: ApiService,
+    private store: Store<MoviesState>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit() {
     this.newMovie = this._initMovie();
@@ -61,10 +65,10 @@ export class AddMovieComponent implements OnInit {
 
   addMovie() {
     this.errMSGs = this._initErrMsgsObj();
-    if (this._isFormValid(this.newMovie)) {
-    this.store.dispatch(AddMovie(this.newMovie));
+    // if (this._isFormValid(this.newMovie)) {
+    this.store.dispatch(new AddMovieAction(this.newMovie));
     this.goToMoviesPage.emit(this.newMovie);
-    }
+    // }
   }
 
   cancel() {

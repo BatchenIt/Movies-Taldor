@@ -44,9 +44,9 @@
     }
   ],
   "categories": [
-    { "id": 1, "name": "דרמה" },
-    { "id": 2, "name": "קומדיה" },
-    { "id": 3, "name": "אקשן" },
-    { "id": 4, "name": "אחר" }
+    { "id": 1, "name": "Drama" },
+    { "id": 2, "name": "Comedy" },
+    { "id": 3, "name": "Action" },
+    { "id": 4, "name": "Other" }
   ]
 }

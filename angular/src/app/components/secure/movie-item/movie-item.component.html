@@ -1,4 +1,4 @@
-<div class="movie">
+<!-- <div class="movie">
     <div class="movie-header">
         <a [href]="movie.imdbUrl" target="_blank">
             <img [src]="movie.imgUrl" [alt]="movie.name">
@@ -12,6 +12,21 @@
     </div>
     <div class="movie-footer">
         <i class="fa fa-trash" aria-hidden="true" (click)="deleteMovie()"></i>
-        <!-- <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editMovie()"></i> -->
+        <i class="fa fa-pencil-square-o" aria-hidden="true" (click)="editMovie()"></i>
     </div>
-</div>
+</div> -->
+
+
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>{{ movie.name }}</mat-card-title>
+        <mat-card-subtitle>{{ movie.categoryName }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-icon class="delete-icon" (click)="deleteMovie()">delete</mat-icon>
+    <img mat-card-image [src]="movie.imgUrl" [alt]="movie.imgUrl">
+    <mat-card-footer>
+        <!-- <button mat-fab color="warn" mat-button (click)="deleteMovie()"> -->
+
+        <!-- </button> -->
+    </mat-card-footer>
+</mat-card>

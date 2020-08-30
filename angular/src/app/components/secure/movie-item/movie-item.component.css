@@ -1,4 +1,4 @@
-.movie {
+/* .movie {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -43,4 +43,22 @@ a:active {
     height: 100%;
     width: 80%;
   }
+} */
+
+.card {
+  width: 10vw;
+  height: 30vh;
+}
+
+.mat-card-header .mat-card-title {
+  text-align: center;
+}
+
+.mat-card-image {
+  height: 20vh;
+  /* height: calc(35vh-); */
+}
+
+.delete-icon{
+  cursor: pointer;
 }
