@@ -1,7 +1,6 @@
 import { MoviesActions, MoviesActionTypes } from './movies.actions';
 import { Movie } from '../interfaces/movie';
 import { Category } from '../interfaces/category';
-import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
 export interface MoviesState {
     list: Movie[];
@@ -74,6 +73,25 @@ export function moviesReducer(
                 loading: false
             };
         case MoviesActionTypes.DELETE_MOVIE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+        case MoviesActionTypes.EDIT_MOVIE:
+            return {
+                ...state,
+                loading: true
+            }
+        case MoviesActionTypes.EDIT_MOVIE_SUCCESS:
+            const editedMovieIndex = state.list.findIndex(x => x.id == action.payload.id);
+            state.list[editedMovieIndex] = { ...action.payload };
+            return {
+                ...state,
+                list: state.list,
+                loading: false
+            };
+        case MoviesActionTypes.EDIT_MOVIE_FAILURE:
             return {
                 ...state,
                 error: action.payload,

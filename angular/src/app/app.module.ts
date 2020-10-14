@@ -30,7 +30,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { MoviesComponent } from './components/movies/movies-list/movies.component';
 import { MovieItemComponent } from './components/movies/movie-item/movie-item.component';
-import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
+import { AddEditMovieComponent } from './components/movies/add-edit-movie/add-edit-movie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
@@ -41,7 +41,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     LoginComponent,
     MoviesComponent,
     MovieItemComponent,
-    AddMovieComponent,
+    AddEditMovieComponent,
     NavBarComponent
   ],
   imports: [
@@ -67,7 +67,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MatListModule
   ],
   entryComponents: [
-    AddMovieComponent
+    AddEditMovieComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

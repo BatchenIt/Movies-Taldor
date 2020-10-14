@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatDialog } from '@angular/material/dialog';
-import { AddMovieComponent } from '../movies/add-movie/add-movie.component';
+import { AddEditMovieComponent } from '../movies/add-edit-movie/add-edit-movie.component';
 
 @Component({
   selector: 'app-nav-bar',
@@ -27,7 +27,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
   }
 
   openAddMovieDialog() {
-    this.dialog.open(AddMovieComponent);
+    this.dialog.open(AddEditMovieComponent);
   }
 
   ngOnDestroy(): void {

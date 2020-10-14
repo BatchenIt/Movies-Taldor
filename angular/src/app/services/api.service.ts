@@ -28,4 +28,8 @@ export class ApiService {
   deleteMovie(id: number) {
     return this.httpClient.delete<Movie>(`${this.base_server_url}movie/${id}`);
   }
+
+  editMovie(movie: Movie) {
+    return this.httpClient.post<Movie>(`${this.base_server_url}movie`, movie);
+  }
 }

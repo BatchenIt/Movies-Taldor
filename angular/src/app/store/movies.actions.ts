@@ -10,7 +10,10 @@ export enum MoviesActionTypes {
     ADD_MOVIE_FAILURE = '[Movies] Add movie failure',
     DELETE_MOVIE = '[MOVIES] Delete movie',
     DELETE_MOVIE_SUCCESS = '[MOVIES] Delete movie success',
-    DELETE_MOVIE_FAILURE = '[MOVIES] Delete movie failure'
+    DELETE_MOVIE_FAILURE = '[MOVIES] Delete movie failure',
+    EDIT_MOVIE = '[MOVIES] Edit movie',
+    EDIT_MOVIE_SUCCESS = '[MOVIES] Edit movie success',
+    EDIT_MOVIE_FAILURE = '[MOVIES] Edit movie failure'
 }
 
 export class LoadMovieAction implements Action {
@@ -57,6 +60,21 @@ export class DeleteMovieFailureAction implements Action {
     constructor(public payload: Error) { }
 }
 
+export class EditMovieAction implements Action {
+    readonly type = MoviesActionTypes.EDIT_MOVIE;
+    constructor(public payload: Movie) { }
+}
+
+export class EditMovieSuccessAction implements Action {
+    readonly type = MoviesActionTypes.EDIT_MOVIE_SUCCESS;
+    constructor(public payload: Movie) { }
+}
+
+export class EditMovieFailureAction implements Action {
+    readonly type = MoviesActionTypes.EDIT_MOVIE_FAILURE;
+    constructor(public payload: Error) { }
+}
+
 export type MoviesActions =
     | LoadMovieAction
     | LoadMovieSuccessAction
@@ -66,6 +84,9 @@ export type MoviesActions =
     | AddMovieFailureAction
     | DeleteMovieAction
     | DeleteMovieSuccessAction
-    | DeleteMovieFailureAction;
+    | DeleteMovieFailureAction
+    | EditMovieAction
+    | EditMovieSuccessAction
+    | EditMovieFailureAction;
 
 

@@ -1,11 +1,30 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { MoviesActionTypes, LoadMovieAction, LoadMovieSuccessAction, LoadMovieFailrueAction, AddMovieAction, AddMovieSuccessAction, AddMovieFailureAction, DeleteMovieAction, DeleteMovieFailureAction, DeleteMovieSuccessAction } from './movies.actions';
-import { ApiService } from '../services/api.service';
+
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { of, Observable } from 'rxjs';
-import { Movie } from '../interfaces/movie';
+
 import { Action } from '@ngrx/store';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+
+import {
+    MoviesActionTypes,
+    LoadMovieAction,
+    LoadMovieSuccessAction,
+    LoadMovieFailrueAction,
+    AddMovieAction,
+    AddMovieSuccessAction,
+    AddMovieFailureAction,
+    DeleteMovieAction,
+    DeleteMovieFailureAction,
+    DeleteMovieSuccessAction,
+    EditMovieAction,
+    EditMovieSuccessAction,
+    EditMovieFailureAction
+} from './movies.actions';
+
+import { ApiService } from '../services/api.service';
+import { Movie } from '../interfaces/movie';
+
 
 @Injectable({
     providedIn: 'root'
@@ -44,6 +63,17 @@ export class MoviesEffects {
                 (data) => this.api.deleteMovie(data.payload).pipe(
                     map(() => new DeleteMovieSuccessAction(data.payload)),
                     catchError(error => of(new DeleteMovieFailureAction(error)))
+                )
+            )
+        );
+
+    @Effect() editMovie$: Observable<Action> = this.actions$
+        .pipe(
+            ofType<EditMovieAction>(MoviesActionTypes.EDIT_MOVIE),
+            mergeMap(
+                (data) => this.api.editMovie(data.payload).pipe(
+                    map(() => new EditMovieSuccessAction(data.payload)),
+                    catchError(error => of(new EditMovieFailureAction(error)))
                 )
             )
         );

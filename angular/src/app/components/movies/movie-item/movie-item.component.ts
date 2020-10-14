@@ -1,8 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Movie } from '../../../interfaces/movie';
 import { Store } from '@ngrx/store';
+
+import { Movie } from '../../../interfaces/movie';
+import { AddEditMovieComponent } from '../add-edit-movie/add-edit-movie.component';
+
 import { MoviesState } from 'src/app/store/movies.reducer';
 import { DeleteMovieAction } from '../../../store/movies.actions';
+
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-movie-item',
@@ -12,9 +17,11 @@ import { DeleteMovieAction } from '../../../store/movies.actions';
 export class MovieItemComponent implements OnInit {
 
   @Input() movie: Movie;
+  dialogRef: MatDialogRef<AddEditMovieComponent>
 
   constructor(
-    private store: Store<MoviesState>
+    private store: Store<MoviesState>,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -24,7 +31,10 @@ export class MovieItemComponent implements OnInit {
     this.store.dispatch(new DeleteMovieAction(this.movie.id));
   }
 
-  editMovie() {
+  openEditMovieDialog() {
+    this.dialogRef = this.dialog.open(AddEditMovieComponent, {
+      data: { ... this.movie },
+    });
   }
 
 }

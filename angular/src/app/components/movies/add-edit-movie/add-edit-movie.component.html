@@ -6,7 +6,6 @@
                 <mat-form-field MatFormFieldControl appearance="fill">
                     <mat-label>Name</mat-label>
                     <input matInput id="name" type="text" maxlength="30" name="name" formControlName="name">
-                    <!-- <span class="err-msg"> {{ errMSGs.name }} </span> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field appearance="fill">
@@ -17,26 +16,23 @@
                             {{ category.name }}
                         </mat-option>
                     </mat-select>
-                    <!-- <span class="err-msg"> {{ errMSGs.categoryName }} </span> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field MatFormFieldControl appearance="fill">
                     <mat-label>Imdb link</mat-label>
                     <input matInput type="text" id="imdbUrl" name="imdbUrl" formControlName="imdbUrl">
-                    <!-- <span class="err-msg"> {{ errMSGs.imdbUrl }} </span> -->
                 </mat-form-field>
                 <br>
                 <mat-form-field MatFormFieldControl appearance="fill">
                     <mat-label>Image url</mat-label>
                     <input matInput type="text" id="imgUrl" name="imgUrl" formControlName="imgUrl">
-                    <!-- <span class="err-msg"> {{ errMSGs.imgUrl }} </span> -->
                 </mat-form-field>
 
                 <mat-dialog-actions>
                     <button mat-raised-button mat-dialog-close>Cancel</button>
-                    <button mat-raised-button type="submit" color="primary" mat-dialog-close [disabled]="!form.valid">Add
+                    <button mat-raised-button type="submit" color="primary" mat-dialog-close [disabled]="!form.valid">
+                        {{ movie ? 'Edit': 'Add' }}
                     </button>
-                    <p>{{form}}</p>
                 </mat-dialog-actions>
             </mat-dialog-content>
         </form>
