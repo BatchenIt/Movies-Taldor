@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../../../interfaces/movie';
 import { Store } from '@ngrx/store';
 import { MoviesState } from 'src/app/store/movies.reducer';
@@ -24,7 +24,7 @@ export class MovieItemComponent implements OnInit {
     this.store.dispatch(new DeleteMovieAction(this.movie.id));
   }
 
-  // editMovie() {
-  // }
+  editMovie() {
+  }
 
 }

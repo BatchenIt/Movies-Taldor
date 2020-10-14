@@ -1,0 +1,19 @@
+.card {
+  width: 10vw;
+}
+
+.mat-card-header .mat-card-title {
+  text-align: center;
+}
+
+.mat-card-image {
+  height: 20vh;
+}
+
+.centerd-footer-icons {
+  text-align: center;
+}
+
+.icon {
+  cursor: pointer;
+}

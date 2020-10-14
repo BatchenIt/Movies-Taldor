@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
@@ -27,9 +28,9 @@ import { MatListModule } from '@angular/material/list';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { MoviesComponent } from './components/secure/movies/movies.component';
-import { MovieItemComponent } from './components/secure/movie-item/movie-item.component';
-import { AddMovieComponent } from './components/secure/add-movie/add-movie.component';
+import { MoviesComponent } from './components/movies/movies-list/movies.component';
+import { MovieItemComponent } from './components/movies/movie-item/movie-item.component';
+import { AddMovieComponent } from './components/movies/add-movie/add-movie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 
@@ -51,6 +52,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatGridListModule,
     MatDialogModule,

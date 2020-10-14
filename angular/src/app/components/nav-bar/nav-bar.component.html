@@ -1,12 +1,15 @@
-<div class="container" [class.is-mobile]="mobileQuery.matches">
+<div class="container" >
     <mat-toolbar color="primary" class="toolbar">
-        <button mat-icon-button (click)="snav.toggle()">
+        <!-- <button mat-icon-button (click)="snav.toggle()">
             <mat-icon>menu</mat-icon>
-        </button>
+        </button> -->
         <h1 class="app-name">Movies</h1>
+        <button mat-fab color="" class="add-icon" (click)="openAddMovieDialog()">
+            <mat-icon>add</mat-icon>
+        </button>
     </mat-toolbar>
 
-    <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
+    <!-- <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
         <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
             fixedTopGap="56">
             <mat-nav-list>
@@ -15,5 +18,10 @@
             </mat-nav-list>
         </mat-sidenav>
 
-    </mat-sidenav-container>
+    </mat-sidenav-container> -->
 </div>
+
+<!-- [class.is-mobile]="mobileQuery.matches" -->
+<!-- <ng-container>
+    <app-add-movie></app-add-movie>
+</ng-container> -->

@@ -4,8 +4,6 @@ import { User } from '../../interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { EncriptionService } from 'src/app/services/encription.service';
 
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',

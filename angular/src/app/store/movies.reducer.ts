@@ -5,21 +5,22 @@ import { ActionReducerMap, MetaReducer } from '@ngrx/store';
 
 export interface MoviesState {
     list: Movie[];
-    // categories: Category[];
+    categories: Category[];
     loading: boolean;
     error: Error;
 }
 
-export const initialState =
+export const initialState: MoviesState =
 {
     list: [],
     loading: false,
-    error: undefined
-    // categories: [
-    //     { id: 1, name: "דרמה" },
-    //     { id: 2, name: "קומדיה" },
-    //     { id: 3, name: "אקשן" },
-    //     { id: 4, name: "אחר" }]
+    error: undefined,
+    categories: [
+        { id: 1, name: "Drama" },
+        { id: 2, name: "Comedy" },
+        { id: 3, name: "Action" },
+        { id: 4, name: "Other" }
+    ]
 };
 
 export function moviesReducer(
@@ -54,7 +55,6 @@ export function moviesReducer(
                 ...state,
                 list: [...state.list, { ...action.payload }],
                 loading: false
-                // categories: state.categories
             };
         case MoviesActionTypes.ADD_MOVIE_FAILURE:
             return {
@@ -72,7 +72,6 @@ export function moviesReducer(
                 ...state,
                 list: state.list.filter(x => x.id !== action.payload),
                 loading: false
-                // categories: state.categories
             };
         case MoviesActionTypes.DELETE_MOVIE_FAILURE:
             return {
