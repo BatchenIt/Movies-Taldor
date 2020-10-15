@@ -1,0 +1,4 @@
+<app-add-edit-movie *ngIf="data.edit; else deleteForm" [movie]="data.movie"></app-add-edit-movie>
+<ng-template #deleteForm>
+    <app-delete-movie [movie]="data.movie"></app-delete-movie>
+</ng-template>

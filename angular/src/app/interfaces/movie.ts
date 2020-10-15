@@ -5,4 +5,9 @@ export interface Movie {
     categoryName?: string;
     imgUrl: string;
     imdbUrl: string;
-} 
+}
+
+export interface DialogData {
+    movie: Movie,
+    edit: boolean
+}

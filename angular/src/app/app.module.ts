@@ -33,6 +33,8 @@ import { MovieItemComponent } from './components/movies/movie-item/movie-item.co
 import { AddEditMovieComponent } from './components/movies/add-edit-movie/add-edit-movie.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { DeleteMovieComponent } from './components/movies/delete-movie/delete-movie.component';
+import { WrappingDialogComponent } from './components/movies/wrapping-dialog/wrapping-dialog.component';
 
 
 @NgModule({
@@ -42,7 +44,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MoviesComponent,
     MovieItemComponent,
     AddEditMovieComponent,
-    NavBarComponent
+    NavBarComponent,
+    DeleteMovieComponent,
+    WrappingDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +71,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     MatListModule
   ],
   entryComponents: [
-    AddEditMovieComponent
+    AddEditMovieComponent,
+    // DeleteMovieComponent
+    WrappingDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

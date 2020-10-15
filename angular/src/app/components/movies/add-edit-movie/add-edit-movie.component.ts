@@ -1,15 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { select, Store } from '@ngrx/store';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { Movie } from 'src/app/interfaces/movie';
+import { Movie } from '../../../interfaces/movie';
 import { Category } from '../../../interfaces/category';
-import { AddMovieErrors } from '../../../interfaces/enum';
 
 import { AppState } from '../../../store';
 import { AddMovieAction, EditMovieAction } from '../../../store/movies.actions';
-
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-edit-movie',
@@ -18,34 +15,41 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class AddEditMovieComponent implements OnInit {
 
+  @Input() movie: Movie;
+
   errMSGfromServer = {};
   categories: Category[];
 
-  form = this.fb.group({
-    name: [(this.movie && this.movie.name) || '',
-    [Validators.required, Validators.maxLength(30),
-    Validators.pattern(/^[a-zA-Z]+$/)]],
-    categoryId: [(this.movie && this.movie.categoryId) || '',
-    Validators.required],
-    imdbUrl: [(this.movie && this.movie.imdbUrl) || '',
-    [Validators.required,
-    Validators.pattern(/^[a-zA-Z]+$/)]],
-    imgUrl: [(this.movie && this.movie.imgUrl) || '',
-    [Validators.required,
-    Validators.pattern(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i)]]
-  });
+  form: FormGroup;
 
   constructor(
     private store: Store<AppState>,
-    private fb: FormBuilder,
-    @Inject(MAT_DIALOG_DATA) public movie: Movie
+    private fb: FormBuilder
   ) {
-    console.log('movie', this.movie)
-    this.store.pipe(select(store => store.moviesState.categories))
+    this.store
+      .pipe(
+        select(store => store.moviesState.categories))
       .subscribe(res => this.categories = res);
   }
 
   ngOnInit() {
+    this._initForm();
+  }
+
+  private _initForm() {
+    this.form = this.fb.group({
+      name: [(this.movie && this.movie.name) || '',
+      [Validators.required, Validators.maxLength(30),
+      Validators.pattern(/^[a-zA-Z]+$/)]],
+      categoryId: [(this.movie && this.movie.categoryId) || '',
+      Validators.required],
+      imdbUrl: [(this.movie && this.movie.imdbUrl) || '',
+      [Validators.required,
+      Validators.pattern(/^[a-zA-Z]+$/)]],
+      imgUrl: [(this.movie && this.movie.imgUrl) || '',
+      [Validators.required,
+      Validators.pattern(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i)]]
+    });
   }
 
   select(e) {

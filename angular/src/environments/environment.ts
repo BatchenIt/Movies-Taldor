@@ -3,6 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+  defaultImgToShow: 'assets/imgNotFound.png',
   production: false,
   server_base_url: 'http://localhost:3000/api/'
 };
