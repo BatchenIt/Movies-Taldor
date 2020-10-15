@@ -1,4 +1,5 @@
-import { MoviesActions, MoviesActionTypes } from './movies.actions';
+import { MoviesActions } from './movies.actions';
+import { MoviesActionTypes } from '../interfaces/enum';
 import { Movie } from '../interfaces/movie';
 import { Category } from '../interfaces/category';
 
@@ -27,62 +28,46 @@ export function moviesReducer(
     action: MoviesActions): MoviesState {
 
     switch (action.type) {
-        case MoviesActionTypes.LOAD_MOVIES:
+        case MoviesActionTypes.LOAD_MOVIES
+            || MoviesActionTypes.ADD_MOVIE
+            || MoviesActionTypes.DELETE_MOVIE
+            || MoviesActionTypes.EDIT_MOVIE:
             return {
                 ...state,
                 loading: true
             }
+
+        case MoviesActionTypes.LOAD_MOVIE_FAILURE
+            || MoviesActionTypes.ADD_MOVIE_FAILURE
+            || MoviesActionTypes.DELETE_MOVIE_FAILURE
+            || MoviesActionTypes.EDIT_MOVIE_FAILURE:
+            return {
+                ...state,
+                error: action.payload,
+                loading: false
+            }
+
         case MoviesActionTypes.LOAD_MOVIE_SUCCESS:
             return {
                 ...state,
                 list: action.payload,
                 loading: false
             }
-        case MoviesActionTypes.LOAD_MOVIE_FAILURE:
-            return {
-                ...state,
-                error: action.payload,
-                loading: false
-            }
-        case MoviesActionTypes.ADD_MOVIE:
-            return {
-                ...state,
-                loading: true
-            }
+
         case MoviesActionTypes.ADD_MOVIE_SUCCESS:
             return {
                 ...state,
                 list: [...state.list, { ...action.payload }],
                 loading: false
             };
-        case MoviesActionTypes.ADD_MOVIE_FAILURE:
-            return {
-                ...state,
-                error: action.payload,
-                loading: false
-            }
-        case MoviesActionTypes.DELETE_MOVIE:
-            return {
-                ...state,
-                loading: true
-            }
+
         case MoviesActionTypes.DELETE_MOVIE_SUCCESS:
             return {
                 ...state,
                 list: state.list.filter(x => x.id !== action.payload),
                 loading: false
             };
-        case MoviesActionTypes.DELETE_MOVIE_FAILURE:
-            return {
-                ...state,
-                error: action.payload,
-                loading: false
-            }
-        case MoviesActionTypes.EDIT_MOVIE:
-            return {
-                ...state,
-                loading: true
-            }
+
         case MoviesActionTypes.EDIT_MOVIE_SUCCESS:
             const editedMovieIndex = state.list.findIndex(x => x.id == action.payload.id);
             state.list[editedMovieIndex] = { ...action.payload };
@@ -91,12 +76,7 @@ export function moviesReducer(
                 list: state.list,
                 loading: false
             };
-        case MoviesActionTypes.EDIT_MOVIE_FAILURE:
-            return {
-                ...state,
-                error: action.payload,
-                loading: false
-            }
+
         default:
             return { ...state };
     }

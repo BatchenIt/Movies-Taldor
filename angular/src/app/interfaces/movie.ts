@@ -8,6 +8,6 @@ export interface Movie {
 }
 
 export interface DialogData {
-    movie: Movie,
-    edit: boolean
+    movie: Movie;
+    edit: boolean;
 }

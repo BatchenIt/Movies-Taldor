@@ -61,7 +61,7 @@ export class AddEditMovieComponent implements OnInit {
   onSubmit() {
     console.log('form', this.form)
     if (!this.form.valid) return;
-    this.form.value.id == 0 ?
+    !this.form.value.id || this.form.value.id == 0 ?
       this.store.dispatch(new AddMovieAction(this.form.value)) :
       this.store.dispatch(new EditMovieAction(this.form.value));
   }

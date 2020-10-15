@@ -72,7 +72,6 @@ import { WrappingDialogComponent } from './components/movies/wrapping-dialog/wra
   ],
   entryComponents: [
     AddEditMovieComponent,
-    // DeleteMovieComponent
     WrappingDialogComponent
   ],
   providers: [],

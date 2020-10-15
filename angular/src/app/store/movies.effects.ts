@@ -6,8 +6,8 @@ import { of, Observable } from 'rxjs';
 import { Action } from '@ngrx/store';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
+import { MoviesActionTypes } from '../interfaces/enum';
 import {
-    MoviesActionTypes,
     LoadMovieAction,
     LoadMovieSuccessAction,
     LoadMovieFailrueAction,
@@ -31,8 +31,10 @@ import { Movie } from '../interfaces/movie';
 })
 export class MoviesEffects {
 
-    constructor(private actions$: Actions,
-        private api: ApiService) { }
+    constructor(
+        private actions$: Actions,
+        private api: ApiService
+    ) { }
 
     @Effect() loadMovies$: Observable<Action> = this.actions$
         .pipe(
