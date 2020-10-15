@@ -21,14 +21,15 @@
     "@angular/platform-browser": "~8.2.0",
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
-    "@ngrx/effects": "^10.0.0",
+    "@ngrx/effects": "^10.0.1",
     "@ngrx/store": "^9.2.0",
     "@ngrx/store-devtools": "^9.2.0",
     "angular-font-awesome": "^3.1.2",
     "crypto-js": "^4.0.0",
     "font-awesome": "^4.7.0",
-    "rxjs": "^6.6.0",
-    "tslib": "^1.10.0",
+    "rxjs": "^6.6.3",
+    "tslib": "^1.14.1",
+    "typescript": "^3.7.5",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
@@ -50,7 +51,6 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
-    "typescript": "~4.0.3"
+    "tslint": "~5.15.0"
   }
 }
