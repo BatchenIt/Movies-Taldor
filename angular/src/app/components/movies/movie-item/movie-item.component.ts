@@ -25,7 +25,7 @@ export class MovieItemComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.imgToShow = this.movie.imgUrl
+    this.imgToShow = this.movie.imgUrl;
   }
 
   updateImgUrl(e) {
@@ -33,7 +33,6 @@ export class MovieItemComponent implements OnInit {
   }
 
   opendDialog(edit) {
-    edit = edit || false;
     const data: DialogData = {
       movie: { ... this.movie },
       edit

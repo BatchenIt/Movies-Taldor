@@ -1,7 +1,7 @@
 <ng-container>
     <mat-grid-list cols="5" class="grid-list">
         <mat-grid-tile *ngFor="let movie of movies$ | async">
-            <app-movie-item [movie]="movie" (deleteMovieEvent)="deleteMovie($event)"></app-movie-item>
+            <app-movie-item [movie]="movie"></app-movie-item>
         </mat-grid-tile>
     </mat-grid-list>
 </ng-container>

@@ -17,10 +17,9 @@ export class AddEditMovieComponent implements OnInit {
 
   @Input() movie: Movie;
 
-  errMSGfromServer = {};
   categories: Category[];
-
   form: FormGroup;
+  selectedCategoryName: string;
 
   constructor(
     private store: Store<AppState>,
@@ -38,15 +37,15 @@ export class AddEditMovieComponent implements OnInit {
 
   private _initForm() {
     this.form = this.fb.group({
-      name: [(this.movie && this.movie.name) || '',
+      name: [this.movie?.name || '',
       [Validators.required, Validators.maxLength(30),
-      Validators.pattern(/^[a-zA-Z]+$/)]],
-      categoryId: [(this.movie && this.movie.categoryId) || '',
+      Validators.pattern(/^[A-Za-z0-9 ]*[A-Za-z0-9 ][A-Za-z0-9 ]*$/)]],
+      categoryId: [this.movie?.categoryId || '',
       Validators.required],
-      imdbUrl: [(this.movie && this.movie.imdbUrl) || '',
+      imdbUrl: [this.movie?.imdbUrl || '',
       [Validators.required,
-      Validators.pattern(/^[a-zA-Z]+$/)]],
-      imgUrl: [(this.movie && this.movie.imgUrl) || '',
+      Validators.pattern(/[https:\/\/www.imdb.com]$/)]],
+      imgUrl: [this.movie?.imgUrl || '',
       [Validators.required,
       Validators.pattern(/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i)]]
     });
@@ -54,15 +53,27 @@ export class AddEditMovieComponent implements OnInit {
 
   select(e) {
     const category = this.categories.find(category => category.id == e.value);
-    if (category)
-      this.form.value.categoryName = category.name;
+    this.selectedCategoryName = category?.name;
+  }
+
+  private _prepareObjToSend(form) {
+    return {
+      id: this.movie?.id || 0,
+      name: form.name,
+      categoryId: form.categoryId,
+      categoryName: this.selectedCategoryName,
+      imdbUrl: form.imdbUrl,
+      imgUrl: form.imgUrl
+    }
   }
 
   onSubmit() {
-    console.log('form', this.form)
+    console.log('form', this.form.value)
     if (!this.form.valid) return;
-    !this.form.value.id || this.form.value.id == 0 ?
-      this.store.dispatch(new AddMovieAction(this.form.value)) :
-      this.store.dispatch(new EditMovieAction(this.form.value));
+    const movie: Movie = this._prepareObjToSend(this.form.value);
+    console.log('movie', movie)
+    movie.id == 0 ?
+      this.store.dispatch(new AddMovieAction(movie)) :
+      this.store.dispatch(new EditMovieAction(movie));
   }
 }

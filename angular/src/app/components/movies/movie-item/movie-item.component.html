@@ -7,7 +7,7 @@
     <img mat-card-image [src]="imgToShow" [alt]="movie.name" (error)="updateImgUrl($event)">
     <mat-card-footer>
         <div class="centerd-footer-icons">
-            <mat-icon class="icon" (click)="opendDialog()">delete</mat-icon>
+            <mat-icon class="icon" (click)="opendDialog(false)">delete</mat-icon>
             <mat-icon class="icon" (click)="opendDialog(true)">edit</mat-icon>
         </div>
     </mat-card-footer>

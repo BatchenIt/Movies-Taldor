@@ -70,7 +70,9 @@ export function moviesReducer(
 
         case MoviesActionTypes.EDIT_MOVIE_SUCCESS:
             const editedMovieIndex = state.list.findIndex(x => x.id == action.payload.id);
-            state.list[editedMovieIndex] = { ...action.payload };
+            console.log('editedMovieIndex', editedMovieIndex)
+            if (editedMovieIndex != -1)
+                state.list[editedMovieIndex] = { ...action.payload };
             return {
                 ...state,
                 list: state.list,
